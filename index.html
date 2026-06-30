@@ -6,116 +6,8 @@
 <title>Jantram — Research Group</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <style>
-    #backToTopBtn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        border: 3px solid var(--blue);
-        background: linear-gradient(145deg, var(--blue-lt), var(--blue-mid));
-        color: var(--blue);
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(15px) scale(0.8);
-        transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        z-index: 9999;
-        box-shadow: 0 4px 0 var(--blue), 0 6px 14px rgba(91,127,166,0.3);
-        overflow: visible;
-    }
-    #backToTopBtn.show {
-        opacity: 1;
-        visibility: visible;
-        animation: btnFloat 2.2s ease-in-out infinite;
-    }
-    #backToTopBtnShadow {
-        position: fixed;
-        bottom: 22px;
-        right: 30px;
-        width: 56px;
-        height: 14px;
-        border-radius: 50%;
-        background: rgba(91,127,166,0.35);
-        filter: blur(2px);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 9998;
-        pointer-events: none;
-    }
-    #backToTopBtnShadow.show {
-        opacity: 1;
-        visibility: visible;
-        animation: shadowFloat 2.2s ease-in-out infinite;
-    }
-    @keyframes shadowFloat {
-        0%, 100% { transform: scale(1); opacity: 0.35; }
-        50% { transform: scale(0.7); opacity: 0.2; }
-    }
-    #backToTopBtnShadow.clicked {
-        animation: shadowLaunch 0.6s cubic-bezier(.34,1.56,.64,1) !important;
-    }
-    @keyframes shadowLaunch {
-        0%   { transform: scale(1); opacity: 0.35; }
-        30%  { transform: scale(1.15); opacity: 0.4; }
-        55%  { transform: scale(0.4); opacity: 0.12; }
-        75%  { transform: scale(0.3); opacity: 0.08; }
-        76%  { transform: scale(0.55); opacity: 0.18; }
-        100% { transform: scale(1); opacity: 0.35; }
-    }
-    #backToTopBtn:hover {
-        background: linear-gradient(145deg, #eaf1f9, var(--blue-lt));
-        box-shadow: 0 4px 0 var(--blue), 0 8px 18px rgba(91,127,166,0.35);
-    }
-    #backToTopBtn:active {
-        box-shadow: 0 1px 0 var(--blue), 0 2px 6px rgba(91,127,166,0.35);
-    }
-    #backToTopBtn .btn-arrow {
-        display: inline-block;
-        transition: transform 0.2s ease;
-    }
-    #backToTopBtn:hover .btn-arrow {
-        transform: translateY(-3px);
-    }
-    @keyframes btnFloat {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-8px) scale(1); }
-    }
-    #backToTopBtn.clicked {
-        animation: btnLaunch 0.6s cubic-bezier(.34,1.56,.64,1) !important;
-    }
-    @keyframes btnLaunch {
-        0%   { transform: translateY(0) scale(1) rotate(0deg); }
-        30%  { transform: translateY(8px) scale(0.85) rotate(-8deg); }
-        55%  { transform: translateY(-70px) scale(1.15) rotate(10deg); }
-        75%  { transform: translateY(-90px) scale(0.9) rotate(-4deg); opacity: 0.4; }
-        76%  { transform: translateY(40px) scale(0.9) rotate(0deg); opacity: 0.4; }
-        100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-    }
-    .btn-spark {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--blue-mid);
-        pointer-events: none;
-        z-index: 9998;
-        animation: sparkFly 0.6s ease-out forwards;
-    }
-    @keyframes sparkFly {
-        0% { transform: translate(0,0) scale(1); opacity: 1; }
-        100% { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
-    }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#1e1e24;
@@ -138,8 +30,7 @@
   --nav-h:58px;
 }
 html{scroll-behavior:smooth;font-size:18px}
-@media(max-width:480px){html{font-size:16px}}
-body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
+body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line-height:1.65;min-height:100vh}
 
 /* ─── LAYOUT SHELL ─── */
 .shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
@@ -162,7 +53,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 }
 
 .group-name{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Comic Neue',cursive;
   font-size:1.55rem;
   font-weight:300;
   letter-spacing:0.22em;
@@ -201,7 +92,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .pi-label{
   font-size:0.6rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -209,7 +100,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 }
 
 .pi-name{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Comic Neue',cursive;
   font-size:1rem;
   color:var(--ink);
   margin-bottom:0.5rem;
@@ -231,7 +122,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .nav-section-label{
   font-size:0.58rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -280,7 +171,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .tag{
   font-size:0.62rem;
-  font-weight:500;
+  font-weight:600;
   letter-spacing:0.05em;
   padding:0.25rem 0.6rem;
   border-radius:4px;
@@ -327,7 +218,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 .intro-text{}
 
 .intro-name{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Comic Neue',cursive;
   font-size:1.25rem;
   color:var(--ink);
   margin-bottom:0.15rem;
@@ -396,7 +287,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
   background:var(--bg-2);
   color:var(--ink-2);
   border:1px solid var(--rule-2);
-  font-weight:500;
+  font-weight:600;
   letter-spacing:0.05em;
   font-size:0.68rem;
   text-transform:uppercase;
@@ -436,7 +327,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 }
 
 .section-heading{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Comic Neue',cursive;
   font-size:1.7rem;
   color:var(--ink);
   line-height:1;
@@ -444,7 +335,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .section-meta{
   font-size:0.7rem;
-  font-weight:500;
+  font-weight:600;
   letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -497,7 +388,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .news-date{
   font-size:0.72rem;
-  font-weight:500;
+  font-weight:700;
   color:var(--ink-3);
   letter-spacing:0.03em;
 }
@@ -505,7 +396,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 .badge{
   display:inline-block;
   font-size:0.6rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.1em;
   text-transform:uppercase;
   padding:0.26rem 0.6rem;
@@ -524,7 +415,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .news-headline{
   font-size:0.96rem;
-  font-weight:500;
+  font-weight:700;
   color:var(--ink);
   line-height:1.5;
   margin-bottom:0.4rem;
@@ -580,7 +471,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
   background:var(--blue-lt);
   display:flex;align-items:center;justify-content:center;
   font-size:0.72rem;
-  font-weight:500;
+  font-weight:700;
   color:var(--blue);
   letter-spacing:0.04em;
   margin-bottom:1rem;
@@ -589,7 +480,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .student-level{
   font-size:0.6rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -597,7 +488,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 }
 
 .student-name{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Comic Neue',cursive;
   font-size:1rem;
   color:var(--ink);
   margin-bottom:0.5rem;
@@ -615,7 +506,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .stag{
   font-size:0.6rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.04em;
   padding:0.22rem 0.6rem;
   border-radius:20px;
@@ -627,7 +518,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 /* Alumni */
 .alumni-block{padding-top:2rem;border-top:1px solid var(--rule);margin-top:2.5rem}
 .alumni-title{
-  font-size:0.68rem;font-weight:500;letter-spacing:0.12em;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.12em;
   text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;
 }
 .alumni-list{display:flex;flex-direction:column;gap:0.5rem}
@@ -641,7 +532,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
   transition:transform 0.16s ease, box-shadow 0.16s ease;
 }
 .alumni-item:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,30,36,0.1)}
-.alumni-name{font-weight:500;color:var(--ink)}
+.alumni-name{font-weight:700;color:var(--ink)}
 .alumni-placement{font-size:0.75rem;color:var(--ink-3);font-style:italic}
 
 /* ─── PUBLICATIONS ─── */
@@ -652,7 +543,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 }
 
 .pub-btn{
-  font-size:0.7rem;font-weight:500;
+  font-size:0.7rem;font-weight:600;
   letter-spacing:0.06em;text-transform:uppercase;
   padding:0.35rem 0.85rem;
   border-radius:4px;
@@ -690,7 +581,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .pub-year{
   font-size:0.74rem;
-  font-weight:500;
+  font-weight:800;
   color:var(--blue);
   background:var(--blue-lt);
   border-radius:8px;
@@ -701,7 +592,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .pub-title{
   font-size:0.92rem;
-  font-weight:500;
+  font-weight:700;
   color:var(--ink);
   line-height:1.5;
   margin-bottom:0.35rem;
@@ -713,7 +604,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
   margin-bottom:0.2rem;
 }
 
-.pub-authors strong{color:var(--ink);font-weight:500}
+.pub-authors strong{color:var(--ink);font-weight:700}
 
 .pub-venue{
   font-size:0.76rem;
@@ -726,7 +617,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 .venue-badge{
   font-style:normal;
   font-size:0.59rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.08em;
   text-transform:uppercase;
   padding:0.2rem 0.5rem;
@@ -740,7 +631,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .pub-link{
   font-size:0.65rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.08em;
   text-transform:uppercase;
   padding:0.28rem 0.7rem;
@@ -818,7 +709,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .demo-tag{
   font-size:0.59rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--ink-3);
@@ -827,7 +718,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .demo-name{
   font-size:0.92rem;
-  font-weight:500;
+  font-weight:700;
   color:var(--ink);
   margin-bottom:0.45rem;
   line-height:1.4;
@@ -850,7 +741,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .demo-status{
   font-size:0.62rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:0.08em;
   text-transform:uppercase;
   padding:0.24rem 0.65rem;
@@ -958,7 +849,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 
 .demo-link{
   font-size:0.7rem;
-  font-weight:500;
+  font-weight:600;
   letter-spacing:0.06em;
   text-transform:uppercase;
   color:var(--blue);
@@ -971,7 +862,6 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
 .demo-link svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:860px){
   .shell{grid-template-columns:1fr}
-  .topbar{padding:0 1.5rem}
   .sidebar{
     position:relative;
     height:auto;
@@ -996,18 +886,6 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
   .sponsor-banner{margin:1.25rem -1.5rem 0;padding:1.5rem 0;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%)}
   .sponsor-track{gap:3rem}
   .sponsor-item{height:38px}
-}
-
-@media(max-width:480px){
-  .intro-inner{flex-direction:column;align-items:flex-start;gap:1rem}
-  .intro-photo{width:84px;height:84px}
-  .section-header{padding:1.5rem 1rem 1rem}
-  .section-body{padding:0 1rem 2rem}
-  .sponsor-banner{margin:1rem -1rem 0}
-  .demos-grid,.students-grid{grid-template-columns:1fr}
-  .pub-controls{flex-wrap:wrap}
-  .topbar{padding:0.6rem 1rem;height:auto}
-  .topbar-links{flex-wrap:wrap;gap:0.75rem}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -1045,7 +923,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
         <span class="nav-dot"></span>Software Demos
       </a>
       <a class="nav-link" href="#students">
-        <span class="nav-dot"></span>Members
+        <span class="nav-dot"></span>Current Members
       </a>
       <a class="nav-link" href="#sponsors">
         <span class="nav-dot"></span>Sponsors
@@ -1324,7 +1202,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
       </div>
     </section>
 
- <section class="section" id="students">
+    <section class="section" id="students">
       <div class="section-header">
         <h2 class="section-heading">Current Members</h2>
         <span class="section-meta">.</span>
@@ -1409,7 +1287,7 @@ body{font-family:'Fredoka',sans-serif;background:var(--bg);color:var(--ink);line
       <div class="section-header">
         <h2 class="section-heading">Sponsors</h2>
         <span class="section-meta">Supporting our research</span>
-      </div>    
+      </div>
       <div class="section-body">
         <div class="sponsor-banner">
           <div class="sponsor-track">
@@ -1486,58 +1364,6 @@ if (mainScroll && backToTop) {
     mainScroll.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
-</script>
-<div id="backToTopBtnShadow"></div>
-<button id="backToTopBtn" aria-label="Back to top" title="Back to top"><span class="btn-arrow">&uarr;</span></button>
-<script>
-    (function () {
-        var btn = document.getElementById('backToTopBtn');
-        var shadow = document.getElementById('backToTopBtnShadow');
-        function toggleBtn() {
-            if (window.scrollY > 300) {
-                btn.classList.add('show');
-                shadow.classList.add('show');
-            } else {
-                btn.classList.remove('show');
-                shadow.classList.remove('show');
-            }
-        }
-        window.addEventListener('scroll', toggleBtn);
-
-        function spawnSparks() {
-            var rect = btn.getBoundingClientRect();
-            var cx = rect.left + rect.width / 2;
-            var cy = rect.top + rect.height / 2;
-            var colors = ['var(--blue)', 'var(--blue-mid)', 'var(--blue-lt)', '#8c6a4a'];
-            for (var i = 0; i < 10; i++) {
-                var spark = document.createElement('div');
-                spark.className = 'btn-spark';
-                var angle = (Math.PI * 2 * i) / 10;
-                var dist = 40 + Math.random() * 30;
-                spark.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
-                spark.style.setProperty('--sy', Math.sin(angle) * dist + 'px');
-                spark.style.left = cx + 'px';
-                spark.style.top = cy + 'px';
-                spark.style.background = colors[i % colors.length];
-                document.body.appendChild(spark);
-                (function (el) {
-                    setTimeout(function () { el.remove(); }, 650);
-                })(spark);
-            }
-        }
-
-        btn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            btn.classList.remove('clicked');
-            shadow.classList.remove('clicked');
-            void btn.offsetWidth; // restart animation
-            btn.classList.add('clicked');
-            shadow.classList.add('clicked');
-            spawnSparks();
-        });
-
-        toggleBtn();
-    })();
 </script>
 </body>
 </html>
