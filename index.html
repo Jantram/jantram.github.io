@@ -55,7 +55,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 .group-name{
   font-family:'Comic Neue',cursive;
   font-size:1.55rem;
-  font-weight:300;
+  font-weight:700;
   letter-spacing:0.22em;
   text-transform:uppercase;
   color:#8c6a4a;
@@ -149,6 +149,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 .nav-link.active{
   background:var(--blue-lt);
   color:var(--blue);
+  animation:navActivePop 0.45s cubic-bezier(.34,1.56,.64,1);
 }
 
 .nav-dot{
@@ -160,7 +161,21 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   flex-shrink:0;
 }
 
-.nav-link.active .nav-dot{opacity:1}
+.nav-link.active .nav-dot{
+  opacity:1;
+  animation:navDotPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes navActivePop{
+  0%{transform:scale(0.92);}
+  50%{transform:scale(1.04);}
+  100%{transform:scale(1);}
+}
+
+@keyframes navDotPulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(91,127,166,0.45);}
+  50%{transform:scale(1.35);box-shadow:0 0 0 4px rgba(91,127,166,0);}
+}
 
 .sidebar-footer{
   padding:1.25rem 1.75rem;
@@ -199,14 +214,14 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
 .intro-inner{
   display:grid;
-  grid-template-columns:140px 1fr;
+  grid-template-columns:190px 1fr;
   gap:2.5rem;
   align-items:center;
 }
 
 .intro-photo{
-  width:140px;
-  height:140px;
+  width:190px;
+  height:190px;
   border-radius:50%;
   object-fit:cover;
   object-position:center top;
@@ -329,6 +344,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 .section-heading{
   font-family:'Comic Neue',cursive;
   font-size:1.7rem;
+  font-weight:700;
   color:var(--ink);
   line-height:1;
 }
@@ -818,6 +834,10 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   mask-image:linear-gradient(90deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%);
 }
 
+.sponsor-banner:hover .sponsor-track{
+  animation-play-state:paused;
+}
+
 .sponsor-track{
   display:flex;
   align-items:center;
@@ -830,8 +850,19 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   display:flex;
   align-items:center;
   justify-content:center;
-  height:52px;
+  height:78px;
   flex-shrink:0;
+  animation:sponsorBob 3.2s ease-in-out infinite;
+  transition:transform 0.25s ease, filter 0.25s ease;
+}
+
+.sponsor-item:nth-child(3n){animation-delay:-0.4s}
+.sponsor-item:nth-child(3n+1){animation-delay:-1.6s}
+.sponsor-item:nth-child(3n+2){animation-delay:-2.6s}
+
+.sponsor-item:hover{
+  transform:translateY(-4px) scale(1.08);
+  filter:saturate(1.15);
 }
 
 .sponsor-item img{
@@ -839,11 +870,21 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   width:auto;
   display:block;
   filter:drop-shadow(0 1px 2px rgba(20,16,10,0.18));
+  transition:filter 0.25s ease;
+}
+
+.sponsor-item:hover img{
+  filter:drop-shadow(0 6px 10px rgba(20,16,10,0.28));
 }
 
 @keyframes sponsorScroll{
   from{transform:translateX(0);}
   to{transform:translateX(-50%);}
+}
+
+@keyframes sponsorBob{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-5px) rotate(-0.6deg);}
 }
 .ds-soon{background:var(--bg-2);color:var(--ink-3);border:1px solid var(--rule)}
 
@@ -885,12 +926,13 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   .pub-year{width:fit-content;padding:0.3rem 0.7rem;margin-bottom:0.5rem}
   .sponsor-banner{margin:1.25rem -1.5rem 0;padding:1.5rem 0;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%)}
   .sponsor-track{gap:3rem}
-  .sponsor-item{height:38px}
+  .sponsor-item{height:54px}
 }
 
 @media(prefers-reduced-motion:reduce){
   .student-card::before,.student-card{transition:none}
   .sponsor-track{animation:none}
+  .sponsor-item{animation:none}
 }
 </style>
 </head>
@@ -968,7 +1010,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
     <section class="section" id="news">
       <div class="section-header">
         <h2 class="section-heading">Latest News</h2>
-        <span class="section-meta">Last updated June 2026</span>
+        <span class="section-meta">Last updated at June 2026</span>
       </div>
       <div class="section-body">
         <div class="news-list">
@@ -1212,8 +1254,8 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
           <div class="student-card">
             <div class="student-initials">AK</div>
-            <p class="student-level">PhD · 4th Year</p>
-            <p class="student-name">Ananya Krishnan</p>
+            <p class="student-level">Masters with Thesis</p>
+            <p class="student-name">Abhinav Nagar</p>
             <p class="student-topic">Multi-agent coordination and emergent communication in LLM-based autonomous systems.</p>
             <div class="student-tags">
               <span class="stag">Agentic AI</span>
@@ -1223,9 +1265,9 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
           </div>
 
           <div class="student-card">
-            <div class="student-initials">MD</div>
-            <p class="student-level">PhD · 3rd Year</p>
-            <p class="student-name">Marcus Delgado</p>
+            <div class="student-initials">AS</div>
+            <p class="student-level">Undergraduate</p>
+            <p class="student-name">Ayushman Sarkar</p>
             <p class="student-topic">Information extraction and structured prediction over heterogeneous scientific documents.</p>
             <div class="student-tags">
               <span class="stag">NLP</span>
@@ -1235,9 +1277,9 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
           </div>
 
           <div class="student-card">
-            <div class="student-initials">CO</div>
-            <p class="student-level">Undergraduate · Honors</p>
-            <p class="student-name">Chidi Okafor</p>
+            <div class="student-initials">MK</div>
+            <p class="student-level">Undergraduate</p>
+            <p class="student-name">Mohit Khalote</p>
             <p class="student-topic">Cross-lingual transfer and low-resource NLP for underrepresented African languages.</p>
             <div class="student-tags">
               <span class="stag">NLP</span>
