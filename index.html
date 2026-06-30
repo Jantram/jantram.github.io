@@ -261,6 +261,51 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   border-radius:12px;
 }
 
+
+
+
+/* ─── LOGO ANIMATED BORDER ─── */
+.intro-photo-wrap::before{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  border-radius:16px;
+  border:2.5px solid #1A6FA8;
+  opacity:0;
+  pointer-events:none;
+  clip-path:polygon(
+    0% 0%, 38% 0%, 38% 3px, 3px 3px, 3px 38%, 0% 38%,
+    62% 62%, 62% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 62%, 100% 62%,
+    100% 100%, 62% 100%
+  );
+  transform:scale(0.88);
+  transition:none;
+  transform-origin:center;
+}
+
+.intro-photo-wrap:hover::before{
+  animation: logoBorderFade 1.6s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes logoBorderFade{
+  0%   { opacity:0; transform:scale(0.88); border-color:#1A6FA8;  box-shadow:none; }
+  25%  { opacity:1; transform:scale(1.06); border-color:#1A6FA8;  box-shadow:none; }
+  55%  { opacity:1; transform:scale(1.0);  border-color:#1A6FA8;  box-shadow:none; }
+  75%  { opacity:0.9; transform:scale(1.02); border-color:#5BC8F5; box-shadow:0 0 8px 3px rgba(91,200,245,0.7), 0 0 18px 6px rgba(91,200,245,0.35); }
+  88%  { opacity:0.5; transform:scale(1.04); border-color:#a8e4ff; box-shadow:0 0 14px 6px rgba(168,228,255,0.9), 0 0 30px 12px rgba(91,200,245,0.4); }
+  100% { opacity:0;   transform:scale(1.06); border-color:#ffffff; box-shadow:0 0 20px 10px rgba(255,255,255,0); }
+}
+
+25%  { opacity:1; transform:scale(1.06); }
+  55%  { opacity:1; transform:scale(1.0);  }
+  100% { opacity:0; transform:scale(1.0);  }
+}
+
+30%  { opacity:1; }
+  60%  { opacity:1;   -webkit-mask-size:100% 100%, 100% 100%; mask-size:100% 100%, 100% 100%; }
+  100% { opacity:0;   -webkit-mask-size:100% 100%, 100% 100%; mask-size:100% 100%, 100% 100%; }
+}
+
 .intro-photo-wrap::after{
   content:'';
   position:absolute;
@@ -1198,7 +1243,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
     <!-- INTRO -->
     <section class="intro-section" id="about">
       <div class="intro-inner">
-        <div class="intro-photo-wrap"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNTAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8IS0tIFdoaXRlIEJhY2tncm91bmQgY2FudmFzIC0tPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNGRkZGRkYiLz4KICAKICA8IS0tIFNsZWVrZXIgTG9nbyBNYXJrOiBUaGUgQWdlbnRpYyBMb29wIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDIwKSI+CiAgICA8IS0tIFRoZSBGaW5lIEFyY2hpdGVjdHVyYWwgUGF0aCAoU3Ryb2tlIHJlZHVjZWQgdG8gNikgLS0+CiAgICA8cGF0aCBkPSJNIDM3NSAxNDAgTCA0MjUgMTQwIEwgNDI1IDIyMCBBIDI1IDI1IDAgMCAxIDM3NSAyMjAgTCAzNzUgMTg1IiAKICAgICAgICAgIGZpbGw9Im5vbmUiIAogICAgICAgICAgc3Ryb2tlPSIjMEVBNUU5IiAKICAgICAgICAgIHN0cm9rZS13aWR0aD0iNiIgCiAgICAgICAgICBzdHJva2UtbGluZWNhcD0icm91bmQiIAogICAgICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgCiAgICA8IS0tIE1pbmltYWxpc3QgSW5wdXQgRGF0YSBOb2RlIC0tPgogICAgPGNpcmNsZSBjeD0iMzc1IiBjeT0iMTQwIiByPSI3IiBmaWxsPSIjMEVBNUU5Ii8+CiAgICAKICAgIDwhLS0gRmluZS1saW5lIEFnZW50aWMgQWN0aW9uIFRlcm1pbmFsIC0tPgogICAgPHBhdGggZD0iTSAzNjggMTkzIEwgMzc1IDE4NSBMIDM4MiAxOTMiIAogICAgICAgICAgZmlsbD0ibm9uZSIgCiAgICAgICAgICBzdHJva2U9IiMwRUE1RTkiIAogICAgICAgICAgc3Ryb2tlLXdpZHRoPSI2IiAKICAgICAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgCiAgICAgICAgICBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPC9nPgogIAogIDwhLS0gUHJlbWl1bSBXb3JkbWFyayAoTGlnaHR3ZWlnaHQsIEhpZ2gtVHJhY2tpbmcsIFNpbmdsZSBMaW5lKSAtLT4KICA8dGV4dCB4PSI0MDkiIHk9IjM0MCIgCiAgICAgICAgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAnU2Vnb2UgVUknLCBSb2JvdG8sIHNhbnMtc2VyaWYiIAogICAgICAgIGZvbnQtc2l6ZT0iNDIiIAogICAgICAgIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGxldHRlci1zcGFjaW5nPSIyMCIgCiAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIgCiAgICAgICAgZmlsbD0iIzFFMjkzQiI+SkFOVFJBTTwvdGV4dD4KPC9zdmc+Cg==" alt="Jantram logo"/></div>
+        <div class="intro-photo-wrap"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNTAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8IS0tIFdoaXRlIEJhY2tncm91bmQgY2FudmFzIC0tPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNFOEVERjIiLz4KICAKICA8IS0tIFNsZWVrZXIgTG9nbyBNYXJrOiBUaGUgQWdlbnRpYyBMb29wIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwyMDApIHNjYWxlKDEuMykgdHJhbnNsYXRlKC00MDAsLTIwMCkgdHJhbnNsYXRlKDAsMjApIj4KICAgIDwhLS0gVGhlIEZpbmUgQXJjaGl0ZWN0dXJhbCBQYXRoIChTdHJva2UgcmVkdWNlZCB0byA2KSAtLT4KICAgIDxwYXRoIGQ9Ik0gMzc1IDE0MCBMIDQyNSAxNDAgTCA0MjUgMjIwIEEgMjUgMjUgMCAwIDEgMzc1IDIyMCBMIDM3NSAxODUiIAogICAgICAgICAgZmlsbD0ibm9uZSIgCiAgICAgICAgICBzdHJva2U9IiMwRUE1RTkiIAogICAgICAgICAgc3Ryb2tlLXdpZHRoPSI2IiAKICAgICAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgCiAgICAgICAgICBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAKICAgIDwhLS0gTWluaW1hbGlzdCBJbnB1dCBEYXRhIE5vZGUgLS0+CiAgICA8Y2lyY2xlIGN4PSIzNzUiIGN5PSIxNDAiIHI9IjciIGZpbGw9IiMwRUE1RTkiLz4KICAgIAogICAgPCEtLSBGaW5lLWxpbmUgQWdlbnRpYyBBY3Rpb24gVGVybWluYWwgLS0+CiAgICA8cGF0aCBkPSJNIDM2OCAxOTMgTCAzNzUgMTg1IEwgMzgyIDE5MyIgCiAgICAgICAgICBmaWxsPSJub25lIiAKICAgICAgICAgIHN0cm9rZT0iIzBFQTVFOSIgCiAgICAgICAgICBzdHJva2Utd2lkdGg9IjYiIAogICAgICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiAKICAgICAgICAgIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8L2c+CiAgCiAgPCEtLSBQcmVtaXVtIFdvcmRtYXJrIChMaWdodHdlaWdodCwgSGlnaC1UcmFja2luZywgU2luZ2xlIExpbmUpIC0tPgogIDx0ZXh0IHg9IjQwOSIgeT0iMzQwIiAKICAgICAgICBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIFJvYm90bywgc2Fucy1zZXJpZiIgCiAgICAgICAgZm9udC1zaXplPSI1MiIgCiAgICAgICAgZm9udC13ZWlnaHQ9IjQwMCIgCiAgICAgICAgbGV0dGVyLXNwYWNpbmc9IjIwIiAKICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIiAKICAgICAgICBmaWxsPSIjMUUyOTNCIj5KQU5UUkFNPC90ZXh0Pgo8L3N2Zz4K" alt="Jantram logo"/></div>
         <div class="intro-text">
           <p class="intro-bio">Jantram is an AI research group at IIT Kharagpur focused on Agentic AI, Natural Language Processing, and Applied Machine Learning. We build systems that understand language, reason over complex inputs, and act autonomously in real-world environments. Our work spans foundational research and practical tools, with the goal of making intelligent systems more capable, interpretable, and reliable.</p>
         </div>
