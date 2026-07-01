@@ -1327,15 +1327,18 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
 
 
-/* ─── FLIP-BACK IMAGE FADE OUT ON RETURN ─── */
-@keyframes fadeOutBack {
-  0%   { opacity: 1; }
-  40%  { opacity: 0.5; }
-  100% { opacity: 0; }
+/* ─── THANOS DISINTEGRATION ─── */
+.thanos-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: 12px;
+  z-index: 10;
 }
-
 .intro-photo-wrap.flipping-back .flip-back img {
-  animation: fadeOutBack 0.35s ease-in forwards;
+  opacity: 0;
 }
 </style>
 </head>
@@ -1828,21 +1831,111 @@ if (backToTop) {
     } catch(e) {}
   }
 
+  function thanosDisintegrate(flipBack, onDone) {
+    const img = flipBack.querySelector('img');
+    if (!img) { onDone(); return; }
+
+    // Remove any old canvas
+    const old = flipBack.querySelector('.thanos-canvas');
+    if (old) old.remove();
+
+    const W = flipBack.offsetWidth  || 190;
+    const H = flipBack.offsetHeight || 190;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'thanos-canvas';
+    canvas.width  = W;
+    canvas.height = H;
+    flipBack.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    // Draw the img onto canvas
+    try {
+      ctx.drawImage(img, 0, 0, W, H);
+    } catch(e) {
+      canvas.remove();
+      onDone();
+      return;
+    }
+
+    const imageData = ctx.getImageData(0, 0, W, H);
+    const pixels = [];
+    const PIXEL = 3; // pixel block size
+
+    for (let y = 0; y < H; y += PIXEL) {
+      for (let x = 0; x < W; x += PIXEL) {
+        const i = (y * W + x) * 4;
+        pixels.push({
+          x, y,
+          r: imageData.data[i],
+          g: imageData.data[i+1],
+          b: imageData.data[i+2],
+          a: imageData.data[i+3] / 255,
+          vx: (Math.random() - 0.3) * 3.5,
+          vy: (Math.random() - 0.8) * 4,
+          life: 0.85 + Math.random() * 0.15,
+          delay: Math.random()
+        });
+      }
+    }
+
+    // Shuffle so disintegration spreads chaotically
+    pixels.sort(() => Math.random() - 0.5);
+
+    const DURATION = 900; // ms
+    let startTime = null;
+
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = ts - startTime;
+      const progress = Math.min(elapsed / DURATION, 1);
+
+      ctx.clearRect(0, 0, W, H);
+
+      let anyAlive = false;
+      for (const p of pixels) {
+        const t = Math.max(0, (progress - p.delay * 0.5) / (1 - p.delay * 0.3));
+        if (t >= 1) continue;
+        anyAlive = true;
+        const alpha = p.a * (1 - Math.pow(t, 1.5)) * p.life;
+        ctx.globalAlpha = Math.max(0, alpha);
+        ctx.fillStyle = `rgb(${p.r},${p.g},${p.b})`;
+        const px = p.x + p.vx * t * 38;
+        const py = p.y + p.vy * t * 38 + 28 * t * t;
+        ctx.fillRect(px, py, PIXEL, PIXEL);
+      }
+      ctx.globalAlpha = 1;
+
+      if (anyAlive && progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        canvas.remove();
+        onDone();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
   function doFlip() {
     isFlipping = true;
     playWhoosh();
     card.classList.add('flipped');
     setTimeout(() => {
-      // Start fade while card is still face-back, then flip back
+      // Thanos disintegration before flipping back
+      const flipBack = card.querySelector('.flip-back');
       card.classList.add('flipping-back');
-      setTimeout(() => {
+      thanosDisintegrate(flipBack, () => {
         playWhoosh();
         card.classList.remove('flipped');
         setTimeout(() => {
           card.classList.remove('flipping-back');
+          // Restore img opacity for next time
+          const img = flipBack ? flipBack.querySelector('img') : null;
+          if (img) img.style.opacity = '';
           isFlipping = false;
         }, 700);
-      }, 350);
+      });
     }, 1350);
   }
 
