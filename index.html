@@ -207,7 +207,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
 /* ─── INTRO SECTION ─── */
 .intro-section{
-  background:var(--white);
+  background:#fafaf8;
   border-bottom:1px solid var(--rule);
   padding:3rem 3.5rem;
 }
@@ -215,7 +215,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 .intro-inner{
   display:grid;
   grid-template-columns:190px 1fr;
-  gap:2.5rem;
+  gap:4rem;
   align-items:center;
 }
 
@@ -264,47 +264,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
 
 
-/* ─── LOGO ANIMATED BORDER ─── */
-.intro-photo-wrap::before{
-  content:'';
-  position:absolute;
-  inset:-6px;
-  border-radius:16px;
-  border:2.5px solid #1A6FA8;
-  opacity:0;
-  pointer-events:none;
-  clip-path:polygon(
-    0% 0%, 38% 0%, 38% 3px, 3px 3px, 3px 38%, 0% 38%,
-    62% 62%, 62% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 62%, 100% 62%,
-    100% 100%, 62% 100%
-  );
-  transform:scale(0.88);
-  transition:none;
-  transform-origin:center;
-}
 
-.intro-photo-wrap:hover::before{
-  animation: logoBorderFade 1.6s cubic-bezier(0.4,0,0.2,1) forwards;
-}
-
-@keyframes logoBorderFade{
-  0%   { opacity:0; transform:scale(0.88); border-color:#1A6FA8;  box-shadow:none; }
-  25%  { opacity:1; transform:scale(1.06); border-color:#1A6FA8;  box-shadow:none; }
-  55%  { opacity:1; transform:scale(1.0);  border-color:#1A6FA8;  box-shadow:none; }
-  75%  { opacity:0.9; transform:scale(1.02); border-color:#5BC8F5; box-shadow:0 0 8px 3px rgba(91,200,245,0.7), 0 0 18px 6px rgba(91,200,245,0.35); }
-  88%  { opacity:0.5; transform:scale(1.04); border-color:#a8e4ff; box-shadow:0 0 14px 6px rgba(168,228,255,0.9), 0 0 30px 12px rgba(91,200,245,0.4); }
-  100% { opacity:0;   transform:scale(1.06); border-color:#ffffff; box-shadow:0 0 20px 10px rgba(255,255,255,0); }
-}
-
-25%  { opacity:1; transform:scale(1.06); }
-  55%  { opacity:1; transform:scale(1.0);  }
-  100% { opacity:0; transform:scale(1.0);  }
-}
-
-30%  { opacity:1; }
-  60%  { opacity:1;   -webkit-mask-size:100% 100%, 100% 100%; mask-size:100% 100%, 100% 100%; }
-  100% { opacity:0;   -webkit-mask-size:100% 100%, 100% 100%; mask-size:100% 100%, 100% 100%; }
-}
 
 .intro-photo-wrap::after{
   content:'';
