@@ -1277,12 +1277,12 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 /* ─── FLIP-BACK IMAGE FADE OUT ON RETURN ─── */
 @keyframes fadeOutBack {
   0%   { opacity: 1; }
-  60%  { opacity: 0.4; }
+  40%  { opacity: 0.5; }
   100% { opacity: 0; }
 }
 
 .intro-photo-wrap.flipping-back .flip-back img {
-  animation: fadeOutBack 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeOutBack 0.35s ease-in forwards;
 }
 </style>
 </head>
@@ -1759,14 +1759,17 @@ if (mainScroll && backToTop) {
     playWhoosh();
     card.classList.add('flipped');
     setTimeout(() => {
-      playWhoosh();
+      // Start fade while card is still face-back, then flip back
       card.classList.add('flipping-back');
-      card.classList.remove('flipped');
       setTimeout(() => {
-        card.classList.remove('flipping-back');
-        isFlipping = false;
-      }, 700);
-    }, 1700);
+        playWhoosh();
+        card.classList.remove('flipped');
+        setTimeout(() => {
+          card.classList.remove('flipping-back');
+          isFlipping = false;
+        }, 700);
+      }, 350);
+    }, 1350);
   }
 
   card.addEventListener('click', () => {
