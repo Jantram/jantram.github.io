@@ -1821,6 +1821,27 @@ if (backToTop) {
     } catch(e) {}
   }
 
+function playSoftWhoosh() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = ctx.currentTime;
+    const master = ctx.createGain();
+    master.gain.setValueAtTime(0.0001, now);
+    master.gain.exponentialRampToValueAtTime(0.06, now + 0.03);
+    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
+    master.connect(ctx.destination);
+    const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i=0;i<data.length;i++) data[i]=Math.random()*2-1;
+    const source=ctx.createBufferSource(); source.buffer=buffer;
+    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=1200; bp.Q.value=0.5;
+    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2200;
+    source.connect(bp); bp.connect(lp); lp.connect(master);
+    source.start(now); source.stop(now+0.55);
+  } catch(e){}
+}
+
+
   function thanosDisintegrate(flipBack, onDone) {
     const img = flipBack.querySelector('img');
     if (!img) { onDone(); return; }
