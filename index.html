@@ -1937,7 +1937,7 @@ function playSoftWhoosh() {
       const flipBack = card.querySelector('.flip-back');
       card.classList.add('flipping-back');
       thanosDisintegrate(flipBack, () => {
-        playWhoosh();
+        playSoftWhoosh();
         card.classList.remove('flipped');
         setTimeout(() => {
           card.classList.remove('flipping-back');
