@@ -1034,7 +1034,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 @media(max-width:860px){
   .shell{grid-template-columns:1fr}
 
-  /* Sticky mobile top bar */
+  /* Fixed mobile top bar */
   .mob-topbar{
     display:flex;
     align-items:center;
@@ -1042,8 +1042,10 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
     padding:0.75rem 1.25rem;
     background:var(--white);
     border-bottom:1px solid var(--rule);
-    position:sticky;
+    position:fixed;
     top:0;
+    left:0;
+    right:0;
     z-index:100;
   }
   .mob-topbar-title{
@@ -1083,6 +1085,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   .main{
     overflow-y:visible;
     height:auto;
+    padding-top:56px;
   }
   /* Sidebar is fixed — remove it from grid flow so it doesn't push main down */
   .shell{
@@ -1094,7 +1097,15 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   .nav-section-label{display:block}
   .nav-link{font-size:0.9rem;padding:0.75rem 0.9rem}
 
-  .section-header{padding:2rem 1.25rem 1.25rem}
+  .topbar{display:none}
+  .section-header{
+    padding:1rem 1.25rem;
+    top:56px;
+    flex-wrap:wrap;
+    gap:0.5rem;
+  }
+  .section-heading{font-size:1.3rem}
+  .section-meta{white-space:normal;font-size:0.65rem}
   .section-body{padding:0 1rem 2.5rem}
   .news-item{
     grid-template-columns:1fr;
