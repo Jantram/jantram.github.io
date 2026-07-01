@@ -1778,9 +1778,9 @@ if (backToTop) {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const now = ctx.currentTime;
       const master = ctx.createGain();
-      master.gain.setValueAtTime(0, now);
-      master.gain.linearRampToValueAtTime(0.13, now + 0.05);
-      master.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+      master.gain.setValueAtTime(0.0001, now);
+      master.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
       master.connect(ctx.destination);
 
       // Shimmer: 3 detuned sine tones in a high magical chord
