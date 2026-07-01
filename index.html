@@ -1830,8 +1830,8 @@ function playSoftWhoosh() {
 
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, now);
-    master.gain.linearRampToValueAtTime(0.04, now + 0.25);
-    master.gain.linearRampToValueAtTime(0.025, now + 0.8);
+    master.gain.linearRampToValueAtTime(0.12, now + 0.20);
+    master.gain.linearRampToValueAtTime(0.10, now + 0.90);
     master.gain.linearRampToValueAtTime(0.0001, now + duration);
     master.connect(ctx.destination);
 
@@ -1855,11 +1855,11 @@ function playSoftWhoosh() {
 
     const lowpass = ctx.createBiquadFilter();
     lowpass.type = "lowpass";
-    lowpass.frequency.value = 1800;
+    lowpass.frequency.value = 2500;
 
     const band = ctx.createBiquadFilter();
     band.type = "bandpass";
-    band.frequency.value = 650;
+    band.frequency.value = 900;
     band.Q.value = 0.4;
 
     const lfo = ctx.createOscillator();
@@ -1867,7 +1867,7 @@ function playSoftWhoosh() {
     lfo.frequency.value = 0.18;
 
     const lfoGain = ctx.createGain();
-    lfoGain.gain.value = 250;
+    lfoGain.gain.value = 500;
 
     lfo.connect(lfoGain);
     lfoGain.connect(band.frequency);
