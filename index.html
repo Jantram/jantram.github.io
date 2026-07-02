@@ -457,6 +457,31 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 }
 .section-meta-link:hover{color:var(--ink);border-color:var(--ink-3)}
 
+.sponsor-thankyou{text-align:right;white-space:normal}
+
+#sponsorConfettiZone{
+  flex:1;
+  min-width:48px;
+  align-self:stretch;
+  position:relative;
+  cursor:pointer;
+  overflow:visible;
+}
+
+.confetti-emoji{
+  position:absolute;
+  font-size:1.1rem;
+  pointer-events:none;
+  animation:confettiEmojiPop 0.9s cubic-bezier(.22,1,.36,1) forwards;
+  user-select:none;
+}
+
+@keyframes confettiEmojiPop{
+  0%  {transform:scale(0) rotate(0deg);   opacity:1;}
+  60% {transform:scale(1.3) rotate(20deg);opacity:1;}
+  100%{transform:scale(0.8) translateY(-28px) rotate(-10deg);opacity:0;}
+}
+
 .section-body{padding:0 3.5rem 3.5rem}
 
 /* ─── NEWS ─── */
@@ -1254,6 +1279,8 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   }
   .section-heading{font-size:1.3rem}
   .section-meta{white-space:normal;font-size:0.65rem}
+  .sponsor-thankyou{width:100%;margin-left:0;text-align:left}
+  #sponsorConfettiZone{display:none}
   .section-body{padding:0 1rem 2.5rem}
   .news-item{
     grid-template-columns:1fr;
@@ -1762,11 +1789,13 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
     <!-- SPONSORS -->
     <section class="section" id="sponsors">
-      <div class="section-header">
+      <div class="section-header" id="sponsorsHeader">
         <h2 class="section-heading">Sponsors</h2>
         <button class="sponsor-gratitude" id="sponsorGratitudeBtn" aria-label="We are grateful to our sponsors for supporting our lab">
           🎉 We are grateful to our sponsors for supporting our lab
         </button>
+        <span class="section-meta sponsor-thankyou">Thank you for supporting our research</span>
+        <div id="sponsorConfettiZone" aria-hidden="true"></div>
       </div>
       <div class="section-body">
         <div class="sponsor-banner">
@@ -2217,6 +2246,59 @@ function playSoftWhoosh() {
   });
 })();
 
+// ─── SPONSOR HEADER CONFETTI ZONE ───
+(function(){
+  // Desktop only
+  if(window.innerWidth <= 860) return;
+
+  var zone = document.getElementById('sponsorConfettiZone');
+  var header = document.getElementById('sponsorsHeader');
+  if(!zone || !header) return;
+
+  var EMOJIS = ['🎉','✨','🎊','💫','⭐','🌟','🎈','💥'];
+  var TRIGGER_CHANCE = 0.12; // ~12% chance per click on the header
+
+  function popEmoji(x, y){
+    var el = document.createElement('span');
+    el.className = 'confetti-emoji';
+    el.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    var rect = zone.getBoundingClientRect();
+    el.style.left = (x - rect.left) + 'px';
+    el.style.top  = (y - rect.top)  + 'px';
+    zone.appendChild(el);
+    el.addEventListener('animationend', function(){ el.remove(); });
+  }
+
+  function burstAt(cx, cy){
+    var count = 4 + Math.floor(Math.random()*4);
+    for(var i=0;i<count;i++){
+      (function(delay){
+        setTimeout(function(){
+          var spread = 32;
+          var rx = cx + (Math.random()-0.5)*spread;
+          var ry = cy + (Math.random()-0.5)*spread*0.5;
+          popEmoji(rx, ry);
+        }, delay);
+      })(i * 80);
+    }
+  }
+
+  header.addEventListener('click', function(e){
+    // Skip if click was on the gratitude button itself
+    if(e.target.closest('#sponsorGratitudeBtn')) return;
+    if(window.innerWidth <= 860) return;
+    if(Math.random() > TRIGGER_CHANCE) return;
+
+    // Burst at a random spot within the zone
+    var rect = zone.getBoundingClientRect();
+    if(rect.width < 10) return;
+    var cx = rect.left + 20 + Math.random() * (rect.width - 40);
+    var cy = rect.top  + rect.height * 0.2 + Math.random() * rect.height * 0.6;
+    burstAt(cx, cy);
+    if(window._spawnConfetti) window._spawnConfetti(cx, cy);
+  });
+})();
+
 // ─── SPONSOR GRATITUDE CONFETTI ───
 (function(){
   var canvas = document.createElement('canvas');
@@ -2290,6 +2372,8 @@ function playSoftWhoosh() {
       ctx.clearRect(0,0,canvas.width,canvas.height);
     }
   }
+
+  window._spawnConfetti = function(ox, oy){ spawnConfetti(ox, oy); if(!animId) animId = requestAnimationFrame(animate); };
 
   var btn = document.getElementById('sponsorGratitudeBtn');
   if(btn){
