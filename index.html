@@ -1971,9 +1971,9 @@ function playSoftWhoosh() {
     // ── Master envelope: swoops in strong, ebbs away ──
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, now);
-    master.gain.linearRampToValueAtTime(0.55, now + 0.55);
-    master.gain.linearRampToValueAtTime(0.62, now + 1.1);
-    master.gain.linearRampToValueAtTime(0.35, now + 2.2);
+    master.gain.linearRampToValueAtTime(0.25, now + 0.55);
+    master.gain.linearRampToValueAtTime(0.32, now + 1.1);
+    master.gain.linearRampToValueAtTime(0.15, now + 2.2);
     master.gain.linearRampToValueAtTime(0.0001, now + duration);
     master.connect(ctx.destination);
 
@@ -2012,9 +2012,9 @@ function playSoftWhoosh() {
     const howl = ctx.createBiquadFilter();
     howl.type = 'bandpass';
     howl.frequency.setValueAtTime(420, now);
-    howl.frequency.linearRampToValueAtTime(680, now + 1.0);
-    howl.frequency.linearRampToValueAtTime(310, now + 2.2);
-    howl.frequency.linearRampToValueAtTime(500, now + duration);
+    howl.frequency.linearRampToValueAtTime(380, now + 1.0);
+    howl.frequency.linearRampToValueAtTime(150, now + 2.2);
+    howl.frequency.linearRampToValueAtTime(200, now + duration);
     howl.Q.value = 1.8;
 
     const howlGain = ctx.createGain();
@@ -2041,12 +2041,12 @@ function playSoftWhoosh() {
     rustleSrc.buffer = rustleBuf;
     const rustleHp = ctx.createBiquadFilter();
     rustleHp.type = 'highpass';
-    rustleHp.frequency.value = 4200;
+    rustleHp.frequency.value = 2100;
     const rustleGain = ctx.createGain();
     rustleGain.gain.setValueAtTime(0.0, now);
-    rustleGain.gain.linearRampToValueAtTime(0.065, now + 0.4);
-    rustleGain.gain.linearRampToValueAtTime(0.085, now + 1.2);
-    rustleGain.gain.linearRampToValueAtTime(0.03, now + 2.6);
+    rustleGain.gain.linearRampToValueAtTime(0.035, now + 0.4);
+    rustleGain.gain.linearRampToValueAtTime(0.045, now + 1.2);
+    rustleGain.gain.linearRampToValueAtTime(0.01, now + 2.6);
     rustleGain.gain.linearRampToValueAtTime(0.0, now + duration);
     rustleSrc.connect(rustleHp);
     rustleHp.connect(rustleGain);
