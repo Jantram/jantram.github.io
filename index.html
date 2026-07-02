@@ -2398,5 +2398,6 @@ function playSoftWhoosh() {
 
 
 </script>
-</body>
+
+<script>(function(){let tip=document.createElement("div");tip.id="globalSponsorTooltip";Object.assign(tip.style,{position:"fixed",padding:"6px 10px",background:"rgba(0,0,0,.85)",color:"#fff",borderRadius:"6px",fontSize:"13px",pointerEvents:"none",zIndex:99999,opacity:0,transition:"opacity .2s"});document.body.appendChild(tip);let t;function show(item){clearTimeout(t);let n=item.getAttribute('data-name')||item.querySelector('img')?.alt||'';if(!n)return;tip.textContent=n;let r=item.getBoundingClientRect();tip.style.left=(r.left+r.width/2-tip.offsetWidth/2)+'px';tip.style.top=(r.top-30)+'px';tip.style.opacity=1;t=setTimeout(()=>tip.style.opacity=0,2500);}document.addEventListener('mouseover',e=>{let it=e.target.closest('.sponsor-item');if(it)show(it);});document.addEventListener('click',e=>{let it=e.target.closest('.sponsor-item');if(it){e.stopPropagation();show(it);}});const mo=new MutationObserver(()=>{document.querySelectorAll('.sponsor-item').forEach(it=>{if(!it.dataset.name){let a=it.querySelector('img')?.alt;if(a)it.dataset.name=a;}})});mo.observe(document.body,{childList:true,subtree:true});})();</script></body>
 </html>
