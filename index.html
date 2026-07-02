@@ -457,10 +457,10 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 }
 .section-meta-link:hover{color:var(--ink);border-color:var(--ink-3)}
 
-#sponsorsHeader{flex-direction:column;align-items:flex-start;gap:0.5rem}
+#sponsorsHeader,#newsHeader{flex-direction:column;align-items:flex-start;gap:0.5rem}
 .sponsors-header-row{display:flex;align-items:flex-end;width:100%;gap:2rem}
 .sponsors-header-row #sponsorConfettiZone{flex:1}
-.sponsor-thankyou{white-space:normal;flex-shrink:0;text-align:left;color:var(--ink-2)}
+.sponsor-thankyou,.news-lastupdated{white-space:normal;flex-shrink:0;text-align:left;color:var(--ink-2);margin-left:0}
 
 #sponsorConfettiZone{
   flex:1;
@@ -1283,7 +1283,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   }
   .section-heading{font-size:1.3rem}
   .section-meta{white-space:normal;font-size:0.65rem;margin-left:auto;text-align:right;flex-shrink:0}
-  .sponsor-thankyou{width:auto;text-align:left;flex-shrink:0;display:block}
+  .sponsor-thankyou,.news-lastupdated{width:auto;text-align:left;flex-shrink:0;display:block;margin-left:0}
   #sponsorConfettiZone{display:none}
   .section-body{padding:0 1rem 2.5rem}
   .news-item{
@@ -1420,7 +1420,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   .hamburger span{background:var(--ink)}
   .mob-topbar-logo svg text{fill:var(--ink)}
   .flip-back{background:var(--bg-2)}
-  .sponsor-thankyou{color:var(--ink-2)}
+  .sponsor-thankyou,.news-lastupdated{color:var(--ink-2)}
 }
 
 
@@ -1568,9 +1568,9 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 
     <!-- NEWS -->
     <section class="section" id="news">
-      <div class="section-header">
+      <div class="section-header" id="newsHeader">
         <h2 class="section-heading">Latest News</h2>
-        <span class="section-meta" style="text-align:left;width:18rem;flex-shrink:0">Last updated at June 2026</span>
+        <span class="section-meta news-lastupdated">Last updated at June 2026</span>
       </div>
       <div class="section-body">
         <div class="news-list">
