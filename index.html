@@ -457,7 +457,10 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
 }
 .section-meta-link:hover{color:var(--ink);border-color:var(--ink-3)}
 
-.sponsor-thankyou{text-align:left;white-space:normal;width:18rem;flex-shrink:0}
+#sponsorsHeader{flex-direction:column;align-items:flex-start;gap:0.5rem}
+.sponsors-header-row{display:flex;align-items:flex-end;width:100%;gap:2rem}
+.sponsors-header-row #sponsorConfettiZone{flex:1}
+.sponsor-thankyou{white-space:normal;flex-shrink:0;text-align:left;color:var(--ink-2)}
 
 #sponsorConfettiZone{
   flex:1;
@@ -1280,7 +1283,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   }
   .section-heading{font-size:1.3rem}
   .section-meta{white-space:normal;font-size:0.65rem;margin-left:auto;text-align:right;flex-shrink:0}
-  .sponsor-thankyou{width:auto;margin-left:auto;text-align:left;flex-shrink:0;display:block}
+  .sponsor-thankyou{width:auto;text-align:left;flex-shrink:0;display:block}
   #sponsorConfettiZone{display:none}
   .section-body{padding:0 1rem 2.5rem}
   .news-item{
@@ -1417,6 +1420,7 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
   .hamburger span{background:var(--ink)}
   .mob-topbar-logo svg text{fill:var(--ink)}
   .flip-back{background:var(--bg-2)}
+  .sponsor-thankyou{color:var(--ink-2)}
 }
 
 
@@ -1791,9 +1795,11 @@ body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--ink);line
     <!-- SPONSORS -->
     <section class="section" id="sponsors">
       <div class="section-header" id="sponsorsHeader">
-        <h2 class="section-heading">Sponsors</h2>
+        <div class="sponsors-header-row">
+          <h2 class="section-heading">Sponsors</h2>
+          <div id="sponsorConfettiZone" aria-hidden="true"></div>
+        </div>
         <span class="section-meta sponsor-thankyou">Thank you for supporting our research</span>
-        <div id="sponsorConfettiZone" aria-hidden="true"></div>
       </div>
       <div class="section-body">
         <div class="sponsor-banner">
